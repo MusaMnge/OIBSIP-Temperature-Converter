@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head >
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Temperature Converter</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-image: linear-gradient( 86.3deg,  rgba(0,119,182,1) 3.6%, rgba(8,24,68,1) 87.6% );
+        }
+        .container {
+            max-width: 300px;
+            margin: 0 auto;
+        }
+        .input-group {
+            margin-bottom: 10px;
+        }
+        .input-group label {
+            display: block;
+            margin-bottom: 5px;
+        }
+        .input-group input {
+            width: 100%;
+            padding: 10px;
+        }
+        .input-group button {
+            margin-top: 10px;
+            padding: 5px 10px;
+            background-color:rgb(149, 92, 173);
+            color: white;
+            border: none;
+            cursor: pointer;
+        }
+        .input-group button:hover {
+            background-color: #c269ca;
+        }
+    </style>
+</head>
+<body >
+    <div class="container" style="color: aliceblue;">
+        <h1>Temperature Converter</h1>
+        <div class="input-group">
+            <label for="temperature">Temperature:</label>
+            <input type="number and text" id="temperature" placeholder="Enter temperature">
+        </div>
+        <div class="input-group">
+            <label for="conversion-type">Convert to:</label>
+            <select id="conversion-type">
+                <option value="celsius">Celsius (°C)</option>
+                <option value="fahrenheit">Fahrenheit (°F)</option>
+                <option value="kelvin">Kelvin (K)</option>
+            </select>
+            <button id="convert-button">Convert</button>
+        </div>
+        <div class="input-group">
+            <label for="result">Result:</label>
+            <input type="text" id="result" readonly>
+        </div>
+    </div>
+    <script>
+        const temperatureInput = document.getElementById('temperature');
+        const conversionTypeSelect = document.getElementById('conversion-type');
+        const resultInput = document.getElementById('result');
+        const convertButton = document.getElementById('convert-button');
+
+        convertButton.addEventListener('click', () => {
+            const inputTemperature = parseFloat(temperatureInput.value);
+            const conversionType = conversionTypeSelect.value;
+
+            let outputTemperature;
+
+            if (conversionType === 'celsius') {
+                if (temperatureInput.value.includes('F')) {
+                    outputTemperature = (inputTemperature - 32) * 5 / 9;
+                } else if (temperatureInput.value.includes('K')) {
+                    outputTemperature = inputTemperature - 273.15;
+                } else {
+                    outputTemperature = inputTemperature;
+                }
+            } else if (conversionType === 'fahrenheit') {
+                if (temperatureInput.value.includes('C')) {
+                    outputTemperature = (inputTemperature * 9 / 5)  + 32;
+                } else if (temperatureInput.value.includes('K')) {
+                    outputTemperature = inputTemperature * 9 / 5 - 459.67;
+                } else {
+                    outputTemperature = inputTemperature;
+                }
+            } else if (conversionType === 'kelvin') {
+                if (temperatureInput.value.includes('C')) {
+                    outputTemperature = inputTemperature + 273.15;
+                } else if (temperatureInput.value.includes('F')) {
+                    outputTemperature = (inputTemperature + 459.67) * 5 / 9;
+                } else {
+                    outputTemperature= inputTemperature;
+                }
+            }
+
+            resultInput.value = `${outputTemperature.toFixed(2)} ${conversionType}`;
+        });
+    </script>
+</body>
+</html>
