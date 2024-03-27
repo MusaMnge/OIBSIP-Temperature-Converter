@@ -13,7 +13,7 @@
 ### About File :
 
 I am a Web Developer from South Africa. 
-This is the code I used to create the temperature converter for the oasis infobyte internship.
+This is the code I used to create the temperature converter project tasked for the oasis infobyte internship.
 
 :wave: I am excited to connect with other developers! Reach out to me on my LinkedIn.
 
